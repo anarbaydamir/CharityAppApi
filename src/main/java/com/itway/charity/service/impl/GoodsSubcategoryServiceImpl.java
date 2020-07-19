@@ -5,10 +5,12 @@
  */
 package com.itway.charity.service.impl;
 
-import com.itway.charity.dao.inter.CrudDaoInter;
+import com.itway.charity.dao.inter.GoodsSubcategoryDaoInter;
 import com.itway.charity.entity.GoodsSubcategory;
-import com.itway.charity.service.inter.CrudServiceInter;
+
 import java.util.List;
+
+import com.itway.charity.service.inter.GoodsSubcategoryServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -20,35 +22,35 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service(value = "goodsSubcategoryService")
 @Transactional
-public class GoodsSubcategoryServiceImpl implements CrudServiceInter<GoodsSubcategory> {
+public class GoodsSubcategoryServiceImpl implements GoodsSubcategoryServiceInter {
 
     @Autowired
     @Qualifier("goodsSubcategoryDao")
-    private CrudDaoInter<GoodsSubcategory> crudDaoInter;
+    private GoodsSubcategoryDaoInter goodsSubcategoryDaoInter;
     
     @Override
     public List<GoodsSubcategory> getAll() {
-        return crudDaoInter.getAll();
+        return goodsSubcategoryDaoInter.getAll();
     }
 
     @Override
     public GoodsSubcategory getById(int id) {
-        return crudDaoInter.getById(id);
+        return goodsSubcategoryDaoInter.getById(id);
     }
 
     @Override
     public Integer insert(GoodsSubcategory goodsSubcategory) {
-        return crudDaoInter.insert(goodsSubcategory);
+        return goodsSubcategoryDaoInter.insert(goodsSubcategory);
     }
 
     @Override
     public Boolean update(GoodsSubcategory goodsSubcategory) {
-        return crudDaoInter.update(goodsSubcategory);
+        return goodsSubcategoryDaoInter.update(goodsSubcategory);
     }
 
     @Override
     public Boolean delete(int id) {
-        return crudDaoInter.delete(id);
+        return goodsSubcategoryDaoInter.delete(id);
     }
     
 }

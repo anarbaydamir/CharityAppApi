@@ -5,7 +5,7 @@
  */
 package com.itway.charity.dao.impl;
 
-import com.itway.charity.dao.inter.CrudDaoInter;
+import com.itway.charity.dao.inter.PlacedGoodsDaoInter;
 import com.itway.charity.entity.PlacedGoods;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Repository;
  * @author anarbaydamirov
  */
 @Repository(value="placedGoodsDao")
-public class PlacedGoodsDaoImpl implements CrudDaoInter<PlacedGoods> {
+public class PlacedGoodsDaoImpl implements PlacedGoodsDaoInter {
 
     @PersistenceContext
     EntityManager entityManager;
@@ -28,6 +28,22 @@ public class PlacedGoodsDaoImpl implements CrudDaoInter<PlacedGoods> {
         Query query = entityManager.createQuery("Select pg from PlacedGoods pg",PlacedGoods.class);
         List<PlacedGoods> placedGoodsList = query.getResultList();
         
+        return placedGoodsList;
+    }
+
+    @Override
+    public List<PlacedGoods> getNew() {
+        Query query = entityManager.createQuery("select pg from PlacedGoods pg where pg.goodsStatus=0",PlacedGoods.class);
+        List<PlacedGoods> placedGoodsList = query.getResultList();
+
+        return placedGoodsList;
+    }
+
+    @Override
+    public List<PlacedGoods> getClosed() {
+        Query query = entityManager.createQuery("select pg from PlacedGoods pg where pg.goodsStatus=1",PlacedGoods.class);
+        List<PlacedGoods> placedGoodsList = query.getResultList();
+
         return placedGoodsList;
     }
 

@@ -5,10 +5,12 @@
  */
 package com.itway.charity.service.impl;
 
-import com.itway.charity.dao.inter.CrudDaoInter;
+import com.itway.charity.dao.inter.CitiesDaoInter;
 import com.itway.charity.entity.Cities;
-import com.itway.charity.service.inter.CrudServiceInter;
+
 import java.util.List;
+
+import com.itway.charity.service.inter.CitiesServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -20,35 +22,35 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service(value = "citiesService")
 @Transactional
-public class CitiesServiceImpl implements CrudServiceInter<Cities>{
+public class CitiesServiceImpl implements CitiesServiceInter {
 
     @Autowired
     @Qualifier("citiesDao")
-    private CrudDaoInter<Cities> crudDaoInter;
+    private CitiesDaoInter citiesDaoInter;
     
     @Override
     public List<Cities> getAll() {
-        return (List)crudDaoInter.getAll();
+        return (List)citiesDaoInter.getAll();
     }
 
     @Override
     public Cities getById(int id) {
-        return crudDaoInter.getById(id);
+        return citiesDaoInter.getById(id);
     }
 
     @Override
     public Integer insert(Cities cities) {
-        return crudDaoInter.insert(cities);
+        return citiesDaoInter.insert(cities);
     }
 
     @Override
     public Boolean update(Cities cities) {
-        return crudDaoInter.update(cities);
+        return citiesDaoInter.update(cities);
     }
 
     @Override
     public Boolean delete(int id) {
-        return crudDaoInter.delete(id);
+        return citiesDaoInter.delete(id);
     }
     
 }

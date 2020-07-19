@@ -5,7 +5,7 @@
  */
 package com.itway.charity.dao.impl;
 
-import com.itway.charity.dao.inter.CrudDaoInter;
+import com.itway.charity.dao.inter.GoodsCategoryDaoInter;
 import com.itway.charity.entity.GoodsCategory;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Repository;
  * @author anarbaydamirov
  */
 @Repository(value="goodsCategoryDao")
-public class GoodsCategoryDaoImpl implements CrudDaoInter<GoodsCategory> {
+public class GoodsCategoryDaoImpl implements GoodsCategoryDaoInter {
     
     @PersistenceContext
     EntityManager entityManager;

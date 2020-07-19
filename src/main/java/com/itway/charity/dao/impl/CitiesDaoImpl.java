@@ -5,7 +5,7 @@
  */
 package com.itway.charity.dao.impl;
 
-import com.itway.charity.dao.inter.CrudDaoInter;
+import com.itway.charity.dao.inter.CitiesDaoInter;
 import com.itway.charity.entity.Cities;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Repository;
  * @author anarbaydamirov
  */
 @Repository(value="citiesDao")
-public class CitiesDaoImpl implements CrudDaoInter<Cities> {
+public class CitiesDaoImpl implements CitiesDaoInter {
 
     @PersistenceContext
     EntityManager entityManager;

@@ -1,6 +1,6 @@
 package com.itway.charity.dao.impl;
 
-import com.itway.charity.dao.inter.CrudDaoInter;
+import com.itway.charity.dao.inter.SearchingGoodsDaoInter;
 import com.itway.charity.entity.SearchingGoods;
 import org.springframework.stereotype.Repository;
 
@@ -10,7 +10,7 @@ import javax.persistence.Query;
 import java.util.List;
 
 @Repository(value = "searchingGoodsDao")
-public class SearchingGoodsDaoImpl implements CrudDaoInter<SearchingGoods> {
+public class SearchingGoodsDaoImpl implements SearchingGoodsDaoInter {
 
     @PersistenceContext
     EntityManager entityManager;
@@ -18,6 +18,20 @@ public class SearchingGoodsDaoImpl implements CrudDaoInter<SearchingGoods> {
     @Override
     public List<SearchingGoods> getAll() {
         Query query = entityManager.createQuery("select sg from SearchingGoods sg",SearchingGoods.class);
+        List<SearchingGoods> searchingGoodsList = query.getResultList();
+        return searchingGoodsList;
+    }
+
+    @Override
+    public List<SearchingGoods> getNew() {
+        Query query = entityManager.createQuery("select sg from SearchingGoods sg where sg.goodsStatus=0",SearchingGoods.class);
+        List<SearchingGoods> searchingGoodsList = query.getResultList();
+        return searchingGoodsList;
+    }
+
+    @Override
+    public List<SearchingGoods> getClosed() {
+        Query query = entityManager.createQuery("select sg from SearchingGoods sg where sg.goodsStatus=1",SearchingGoods.class);
         List<SearchingGoods> searchingGoodsList = query.getResultList();
         return searchingGoodsList;
     }

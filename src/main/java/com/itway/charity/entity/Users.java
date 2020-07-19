@@ -60,6 +60,12 @@ public class Users implements Serializable {
     private Date loginDate;
     @Column(name = "phone_number")
     private String phoneNumber;
+    @Column(name = "user_active")
+    private Short userActive;
+    @Column(name = "user_key")
+    private String userKey;
+    @Column(name = "user_token")
+    private String userToken;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "goodsOwnerId")
     private List<PlacedGoods> placedGoodsList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "searchingUserId")
@@ -167,6 +173,28 @@ public class Users implements Serializable {
     @Override
     public String toString() {
         return "com.itway.charity.entity.Users[ id=" + id + " ]";
+    }
+
+    public Short getUserActive() {
+        return userActive;
+    }
+
+    public void setUserActive(Short userActive) {
+        this.userActive = userActive;
+    }
+
+    public String getUserKey() {
+        return userKey;
+    }
+
+    public void setUserKey(String userKey) {
+        this.userKey = userKey;
+    }
+    public String getUserToken(){
+        return userToken;
+    }
+    public void setUserToken(String userToken){
+        this.userToken=userToken;
     }
     
 }

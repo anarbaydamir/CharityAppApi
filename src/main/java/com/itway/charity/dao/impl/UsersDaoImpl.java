@@ -1,16 +1,18 @@
 package com.itway.charity.dao.impl;
 
-import com.itway.charity.dao.inter.CrudDaoInter;
+import com.itway.charity.dao.inter.UsersDaoInter;
 import com.itway.charity.entity.Users;
+import org.apache.catalina.User;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository(value = "usersDao")
-public class UsersDaoImpl implements CrudDaoInter<Users> {
+public class UsersDaoImpl implements UsersDaoInter {
 
     @PersistenceContext
     EntityManager entityManager;
@@ -27,6 +29,37 @@ public class UsersDaoImpl implements CrudDaoInter<Users> {
     public Users getById(int id) {
         Users users = entityManager.find(Users.class,id);
         return users;
+    }
+
+    @Override
+    public Users getByMailAndPassword(String mail, String password) {
+        try{
+            TypedQuery<Users> query = entityManager.createQuery("select u from Users u where u.mail=:mail and u.password=:password",Users.class);
+            query.setParameter("mail",mail);
+            query.setParameter("password",password);
+            Users users=query.getSingleResult();
+
+            return users;
+        }
+        catch (Exception ex){
+            return null;
+        }
+    }
+
+    @Override
+    public Users getByMailPasswordAndKey(String mail, String password, String userKey) {
+        try{
+            TypedQuery<Users> query = entityManager.createQuery("select u from Users u where u.mail=:mail and u.password=:password and u.userKey=:userKey",Users.class);
+            query.setParameter("mail",mail);
+            query.setParameter("password",password);
+            query.setParameter("userKey",userKey);
+            Users users = query.getSingleResult();
+
+            return users;
+        }
+        catch (Exception ex){
+            return null;
+        }
     }
 
     @Override

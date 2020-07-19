@@ -5,10 +5,12 @@
  */
 package com.itway.charity.service.impl;
 
-import com.itway.charity.dao.inter.CrudDaoInter;
+import com.itway.charity.dao.inter.SearchingGoodsPhotosDaoInter;
 import com.itway.charity.entity.SearchingGoodsPhotos;
-import com.itway.charity.service.inter.CrudServiceInter;
+
 import java.util.List;
+
+import com.itway.charity.service.inter.SearchingGoodsPhotosServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -19,36 +21,36 @@ import org.springframework.transaction.annotation.Transactional;
  * @author anarbaydamirov
  */
 @Service
-@Transactional("searchingGoodsPhotosService")
-public class SearchingGoodsPhotosServiceImpl implements CrudServiceInter<SearchingGoodsPhotos>{
+@Transactional
+public class SearchingGoodsPhotosServiceImpl implements SearchingGoodsPhotosServiceInter {
 
     @Autowired
     @Qualifier("searchingGoodsPhotosDao")
-    private CrudDaoInter<SearchingGoodsPhotos> crudDaoInter;
+    private SearchingGoodsPhotosDaoInter searchingGoodsPhotosDaoInter;
     
     @Override
     public List<SearchingGoodsPhotos> getAll() {
-        return crudDaoInter.getAll();
+        return searchingGoodsPhotosDaoInter.getAll();
     }
 
     @Override
     public SearchingGoodsPhotos getById(int id) {
-        return crudDaoInter.getById(id);
+        return searchingGoodsPhotosDaoInter.getById(id);
     }
 
     @Override
     public Integer insert(SearchingGoodsPhotos searchingGoodsPhotos) {
-        return crudDaoInter.insert(searchingGoodsPhotos);
+        return searchingGoodsPhotosDaoInter.insert(searchingGoodsPhotos);
     }
 
     @Override
     public Boolean update(SearchingGoodsPhotos searchingGoodsPhotos) {
-        return crudDaoInter.update(searchingGoodsPhotos);
+        return searchingGoodsPhotosDaoInter.update(searchingGoodsPhotos);
     }
 
     @Override
     public Boolean delete(int id) {
-        return crudDaoInter.delete(id);
+        return searchingGoodsPhotosDaoInter.delete(id);
     }
     
 }

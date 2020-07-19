@@ -5,8 +5,7 @@
  */
 package com.itway.charity.dao.impl;
 
-import com.itway.charity.dao.inter.CrudDaoInter;
-import com.itway.charity.entity.SearchingGoods;
+import com.itway.charity.dao.inter.SearchingGoodsPhotosDaoInter;
 import com.itway.charity.entity.SearchingGoodsPhotos;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -19,7 +18,7 @@ import org.springframework.stereotype.Repository;
  * @author anarbaydamirov
  */
 @Repository(value="searchingGoodsPhotosDao")
-public class SearchingGoodsPhotosDaoImpl implements CrudDaoInter<SearchingGoodsPhotos>{
+public class SearchingGoodsPhotosDaoImpl implements SearchingGoodsPhotosDaoInter {
 
     @PersistenceContext
     EntityManager entityManager;

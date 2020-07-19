@@ -5,10 +5,12 @@
  */
 package com.itway.charity.service.impl;
 
-import com.itway.charity.dao.inter.CrudDaoInter;
+import com.itway.charity.dao.inter.PlacedGoodsDaoInter;
 import com.itway.charity.entity.PlacedGoods;
-import com.itway.charity.service.inter.CrudServiceInter;
+
 import java.util.List;
+
+import com.itway.charity.service.inter.PlacedGoodsServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -20,35 +22,45 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service(value = "placedGoodsService")
 @Transactional
-public class PlacedGoodsServiceImpl implements CrudServiceInter<PlacedGoods> {
+public class PlacedGoodsServiceImpl implements PlacedGoodsServiceInter {
 
     @Autowired
     @Qualifier("placedGoodsDao")
-    private CrudDaoInter<PlacedGoods> crudDaoInter;
+    private PlacedGoodsDaoInter placedGoodsDaoInter;
     
     @Override
     public List<PlacedGoods> getAll() {
-        return crudDaoInter.getAll();
+        return placedGoodsDaoInter.getAll();
+    }
+
+    @Override
+    public List<PlacedGoods> getNew() {
+        return placedGoodsDaoInter.getNew();
+    }
+
+    @Override
+    public List<PlacedGoods> getClosed() {
+        return placedGoodsDaoInter.getClosed();
     }
 
     @Override
     public PlacedGoods getById(int id) {
-        return crudDaoInter.getById(id);
+        return placedGoodsDaoInter.getById(id);
     }
 
     @Override
     public Integer insert(PlacedGoods placedGoods) {
-        return crudDaoInter.insert(placedGoods);
+        return placedGoodsDaoInter.insert(placedGoods);
     }
 
     @Override
     public Boolean update(PlacedGoods placedGoods) {
-        return crudDaoInter.update(placedGoods);
+        return placedGoodsDaoInter.update(placedGoods);
     }
 
     @Override
     public Boolean delete(int id) {
-        return crudDaoInter.delete(id);
+        return placedGoodsDaoInter.delete(id);
     }
     
 }

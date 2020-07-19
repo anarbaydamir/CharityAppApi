@@ -5,10 +5,12 @@
  */
 package com.itway.charity.service.impl;
 
-import com.itway.charity.dao.inter.CrudDaoInter;
+import com.itway.charity.dao.inter.UsersDaoInter;
 import com.itway.charity.entity.Users;
-import com.itway.charity.service.inter.CrudServiceInter;
+
 import java.util.List;
+
+import com.itway.charity.service.inter.UsersServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -20,35 +22,45 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service(value = "usersService")
 @Transactional
-public class UsersServiceImpl implements CrudServiceInter<Users> {
+public class UsersServiceImpl implements UsersServiceInter {
 
     @Autowired
     @Qualifier("usersDao")
-    private CrudDaoInter<Users> crudDaoInter;
+    private UsersDaoInter usersDaoInter;
     
     @Override
     public List<Users> getAll() {
-        return crudDaoInter.getAll();
+        return usersDaoInter.getAll();
     }
 
     @Override
     public Users getById(int id) {
-        return crudDaoInter.getById(id);
+        return usersDaoInter.getById(id);
+    }
+
+    @Override
+    public Users getByMailAndPassword(String mail, String password) {
+        return usersDaoInter.getByMailAndPassword(mail,password);
+    }
+
+    @Override
+    public Users getByMailPasswordAndKey(String mail, String password, String userKey) {
+        return usersDaoInter.getByMailPasswordAndKey(mail,password,userKey);
     }
 
     @Override
     public Integer insert(Users users) {
-        return crudDaoInter.insert(users);
+        return usersDaoInter.insert(users);
     }
 
     @Override
     public Boolean update(Users users) {
-        return crudDaoInter.update(users);
+        return usersDaoInter.update(users);
     }
 
     @Override
     public Boolean delete(int id) {
-        return crudDaoInter.delete(id);
+        return usersDaoInter.delete(id);
     }
     
 }

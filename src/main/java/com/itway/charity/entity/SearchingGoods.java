@@ -75,7 +75,7 @@ public class SearchingGoods implements Serializable {
 
     public SearchingGoods() {
     }
-
+    
     public SearchingGoods(Integer id) {
         this.id = id;
     }
